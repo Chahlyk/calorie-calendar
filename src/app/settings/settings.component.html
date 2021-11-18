@@ -1,1 +1,49 @@
-<p>settings works!</p>
+<div>
+  <a [routerLink]="['/calendar']" class="cancel">Cancel</a>
+  <a [routerLink]="['/']" class="exit"><img src="../../assets/exit.jpg" alt="exit"></a>
+  <p class="title">Personal settings</p>
+</div>
+<div class="content">
+  <form>
+    <p class="pGender">Gender</p>
+    <div class="gender">
+      <div class="circle">
+        <input class="radio" id="male" type="radio" name="gender" value="m" checked>
+      </div>
+      <label for="male">Male</label>
+      <div class="circle fem">
+        <input class="radio" id="female" type="radio" name="gender" value="fem">
+      </div>
+      <label for="female">Female</label>
+    </div>
+    <div>
+      <p>Weight (kg)</p>
+      <input type="text" name="weight" value="55">
+    </div>
+    <div>
+      <p>Height (sm)</p>
+      <input type="text" name="height">
+    </div>
+    <button class="button calc">Calculate rate for day</button>
+    <div class="kcal">
+      <div class="minMax">
+        <p>Min kcal</p>
+        <input type="text" name="min kcal" value="1230">
+      </div>
+      <div class="minMax">
+        <p>Max kcal</p>
+        <input type="text" name="max kcal" value="1510">
+      </div>
+    </div>
+    <div>
+      <p>Fats (gm)</p>
+      <input type="text" name="Fats" value="55">
+      <p>Proteins (gm)</p>
+      <input type="text" name="Proteins" value="55">
+      <p>Carbohydrates (gm)</p>
+      <input type="text" name="Carbohydrates" value="55">
+    </div>
+  </form>
+  <button class="button save">Save settings</button>
+</div>
+<img class="girl" src="../../assets/dimGirl.png">

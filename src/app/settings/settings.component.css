@@ -1,0 +1,125 @@
+* {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 16px;
+}
+
+p {
+  margin: 22px 0 15px 0;
+}
+
+.cancel {
+  position: absolute;
+  font-size: 18px;
+  top: 6px;
+  left: 9px;
+  margin: 0;
+  text-decoration: none;
+  color: black;
+}
+
+.exit {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+}
+
+.title {
+  font-size: 28px;
+  text-align: center;
+  margin: 23px 0 13px 0;
+}
+
+.content {
+  margin: 13px 0 0 30px;
+  width: 300px;
+}
+
+.gender {
+  font-weight: bold;
+  display: flex;
+  margin: 10px 0 30px 0;
+}
+
+.pGender {
+  margin: 0;
+}
+
+.gender label {
+  margin-top: 4px;
+}
+
+.gender [type="radio"]:checked  {
+  background: black;
+  color: black;
+  border: 2px solid #ddd;
+}
+
+input {
+  appearance: none;
+}
+
+.circle {
+  margin-right: 10px;
+  padding: 0;
+  border: 2px solid black;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.fem {
+  margin-left: 34px;
+}
+
+.radio {
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+
+.kcal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.minMax {
+  width: 135px;
+}
+
+input[type='text'] {
+  border: none;
+  border-bottom: 1px solid black;
+  width: 100%;
+  padding: 4.5px 0;
+}
+
+.button {
+  background: #799CF4;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: #799CF4;
+  color: white;
+  font-size: 20px;
+  padding: 6px 8px;
+}
+
+.calc {
+  margin-top: 20px;
+}
+
+.save {
+  position: absolute;
+  bottom: 10px;
+  left: 146px;
+}
+
+.girl {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+
