@@ -6,11 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-  public date: Date = new Date();
+  public date: number = new Date().getDate();
+  public dates: Array<number> = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.dateArray();
+  }
+
+  public dateArray(): any {
+    for (let i = 0; i < 7; i++ ) {
+      this.dates.push(this.date + i)
+    }
+
   }
 
 }

@@ -6,7 +6,7 @@ import { TitlePageComponent } from './title-page/title-page.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MealComponent } from './meal/meal.component';
 import { CurrentDayComponent } from './current-day/current-day.component';
 
@@ -23,7 +23,7 @@ import { CurrentDayComponent } from './current-day/current-day.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
