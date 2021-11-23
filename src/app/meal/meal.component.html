@@ -1,0 +1,36 @@
+<div>
+  <a [routerLink]="['/calendar']" class="cancel">Cancel</a>
+  <p class="title">New meal</p>
+</div>
+<div class="content">
+  <form [formGroup]="form" (ngSubmit)="add()">
+    <div>
+      <p>Title</p>
+      <input type="text" name="Fats" formControlName="title">
+    </div>
+    <div class="smallInputs">
+      <div class="kcalTime">
+        <p>Kcal</p>
+        <input type="text" name="min kcal" formControlName="kcal">
+      </div>
+      <div class="kcalTime">
+        <p>Time</p>
+        <input type="text" name="max kcal" formControlName="time">
+      </div>
+    </div>
+    <div>
+      <p>Fats (gm)</p>
+      <input type="text" name="Fats" formControlName="fats">
+      <p>Proteins (gm)</p>
+      <input type="text" name="Proteins" formControlName="proteins">
+      <p>Carbohydrates (gm)</p>
+      <input type="text" name="Carbohydrates" formControlName="carb">
+    </div>
+    <p>Add photo</p>
+    <div class="addPhoto">
+      <img src="../../assets/addPhoto.svg">
+    </div>
+    <button class="button" type="submit" [disabled]="form.invalid">Add meal</button>
+  </form>
+</div>
+<img class="girl" src="../../assets/dimGirl.png">
