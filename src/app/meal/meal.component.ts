@@ -13,12 +13,12 @@ export class MealComponent implements OnInit {
 
   public ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('Dinner shit', Validators.required),
-      kcal: new FormControl('1230', Validators.required),
-      time: new FormControl('17:50', Validators.required),
-      fats: new FormControl('55', Validators.required),
-      proteins: new FormControl('55', Validators.required),
-      carb: new FormControl('55', Validators.required),
+      title: new FormControl('', Validators.required),
+      kcal: new FormControl('', Validators.required),
+      time: new FormControl('', Validators.required),
+      fats: new FormControl('', Validators.required),
+      proteins: new FormControl('', Validators.required),
+      carb: new FormControl('', Validators.required),
     })
   }
 
