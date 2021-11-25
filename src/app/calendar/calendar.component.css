@@ -31,21 +31,29 @@ td {
   top: 0;
 }
 
-.august {
-  margin: 0 8px 0 0;
+.settings {
+  margin: 0 12px 0 0;
 }
 
-.augustText {
+.month {
   margin: 0 0 20px 0;
 }
 
 .days {
-  border-top: none;
   width: 50px;
   text-align: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
 .sum {
+  display: flex;
+  height: 30px;
+  justify-content: space-around;
+}
+
+.sum  p{
   margin: 7px 0 10px 0;
   font-size: 15px;
   font-weight: bold;
@@ -54,6 +62,9 @@ td {
 
 .day {
   font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  padding: 2px;
 }
 
 .verticalLine {
@@ -71,6 +82,20 @@ td {
 
 .verticalLine .start {
   margin-top: 13px;
+}
+
+.meal {
+  width: 47px;
+  height: 50px;
+  background: #799CF4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.meal p {
+  color: white;
+  font-size: 12px;
 }
 
 .add {

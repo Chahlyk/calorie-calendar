@@ -20,115 +20,9 @@
       <td></td>
       <td></td>
     </tr>
-    <tr>
+    <tr #tr *ngFor="let h of hours" class="{{h}}">
       <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td #td *ngFor="let d of week" class="{{d | date: 'EEE'}}"></td>
     </tr>
     <tr>
       <td></td>
@@ -148,24 +42,13 @@
     <p class="month">{{today | date: 'MMM'}}˅</p>
   </div>
   <div class="days" *ngFor="let d of week">
-    <div class="sum"><p>{{sum}}</p></div>
+    <div class="sum"><p [ngStyle]="{color: color}">{{sum}}</p></div>
     <p class="day" [ngStyle]="{color: d.getDate() === today.getDate() ? 'white' : 'black', background: d.getDate() === today.getDate() ? '#799CF4': 'none'}">{{d.getDate()}}</p>
     <p>{{d | date: 'EEE'}}</p>
   </div>
 </div>
 <div class="verticalLine">
-  <p class="start">08:00</p>
-  <p>09:00</p>
-  <p>10:00</p>
-  <p>11:00</p>
-  <p>12:00</p>
-  <p>13:00</p>
-  <p>14:00</p>
-  <p>15:00</p>
-  <p>16:00</p>
-  <p>17:00</p>
-  <p>18:00</p>
-  <p>19:00</p>
+  <p class="start" *ngFor="let t of time">{{t}}</p>
 </div>
 <div class="add" [routerLink]="['/meal']">
   <img src="../../assets/add_24px.png" alt="add">
@@ -173,7 +56,7 @@
 <img class="girl" src="../../assets/dimGirl.png" alt="girl">
 
 <div class="meal">
-  <p>meal.title</p>
-  <p>meal.kcal</p>
+  <p>{{mealData.title}}</p>
+  <p><b>{{mealData.kcal}}</b></p>
 </div>
 
