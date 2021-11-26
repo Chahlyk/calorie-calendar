@@ -9,6 +9,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MealComponent } from './meal/meal.component';
 import { CurrentDayComponent } from './current-day/current-day.component';
+import { CurrentMealComponent } from './current-meal/current-meal.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CurrentDayComponent } from './current-day/current-day.component';
     CalendarComponent,
     SettingsComponent,
     MealComponent,
-    CurrentDayComponent
+    CurrentDayComponent,
+    CurrentMealComponent
   ],
   imports: [
     BrowserModule,

@@ -85,8 +85,9 @@ td {
 }
 
 .meal {
-  width: 47px;
-  height: 50px;
+  padding: 1px;
+  width: 45px;
+  height: 48px;
   background: #799CF4;
   display: flex;
   flex-direction: column;

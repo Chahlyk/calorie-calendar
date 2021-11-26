@@ -126,7 +126,7 @@ input[type='text'] {
   right: 0;
 }
 
-.blur {
+.modalPosition {
   position: absolute;
   top: 0;
   left: 0;
@@ -137,7 +137,7 @@ input[type='text'] {
   align-items: center;
 }
 
-.by {
+.shade {
   position: absolute;
   top: 0;
   left: 0;
@@ -154,10 +154,14 @@ input[type='text'] {
   color: white;
   border-radius: 10px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal p {
   margin: 10px;
+  text-align: center;
 }
 
 .modal button {
@@ -165,6 +169,16 @@ input[type='text'] {
   color: white;
   width: 50px;
   height: 30px;
+}
+
+.buttonsModal {
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modalWindow {
+  display: none;
 }
 
 

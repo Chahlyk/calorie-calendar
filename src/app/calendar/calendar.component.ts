@@ -9,7 +9,13 @@ import { IMeal, ISettings } from "../interfaces";
 export class CalendarComponent implements OnInit {
 
   public settingsData: ISettings = JSON.parse(<string>localStorage.getItem('settingsData'));
-  public mealData: IMeal = JSON.parse(<string>localStorage.getItem('meal'));
+  public sunMeal: IMeal = JSON.parse(<string>localStorage.getItem('sunMeal'));
+  public monMeal: IMeal = JSON.parse(<string>localStorage.getItem('monMeal'));
+  public tueMeal: IMeal = JSON.parse(<string>localStorage.getItem('tueMeal'));
+  public wedMeal: IMeal = JSON.parse(<string>localStorage.getItem('wedMeal'));
+  public thuMeal: IMeal = JSON.parse(<string>localStorage.getItem('thuMeal'));
+  public friMeal: IMeal = JSON.parse(<string>localStorage.getItem('friMeal'));
+  public sutMeal: IMeal = JSON.parse(<string>localStorage.getItem('sutMeal'));
 
   public sum: any = 1310;
   public week: Array<Date> = [];
@@ -31,6 +37,7 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.dateArray();
     this.changeColor();
+    console.log(localStorage);
   }
 
   private dateArray(): void {
@@ -45,13 +52,18 @@ export class CalendarComponent implements OnInit {
   }
 
   private changeColor() {
-    if (this.sum > this.settingsData.maxKcal) {
-       this.color = '#F47981';
-    } else if (this.sum < this.settingsData.minKcal) {
-      this.color = '#F5D45E';
+    if (this.settingsData != undefined) {
+      if (this.sum > this.settingsData.maxKcal) {
+        this.color = '#F47981';
+      } else if (this.sum < this.settingsData.minKcal) {
+        this.color = '#F5D45E';
+      } else {
+        this.color = '#799CF4';
+      }
     } else {
-      this.color = '#799CF4';
+      this.sum = '';
     }
+
   }
 
 }

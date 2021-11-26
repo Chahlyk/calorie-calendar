@@ -30,7 +30,17 @@
     <div class="addPhoto">
       <img src="../../assets/addPhoto.svg">
     </div>
-    <button class="button" type="submit" [disabled]="form.invalid">Add meal</button>
+    <button (click)="toggle = true" class="button" type="submit" [disabled]="form.invalid">Add meal</button>
   </form>
 </div>
 <img class="girl" src="../../assets/dimGirl.png">
+
+<div class="modalWindow" [ngStyle]="{display: toggle ? 'block' : 'none'}">
+  <div class="shade"></div>
+  <div class="modalPosition">
+    <div class="modal">
+      <p>Meal added</p>
+        <button [routerLink]="['/calendar']">Okay</button>
+    </div>
+  </div>
+</div>

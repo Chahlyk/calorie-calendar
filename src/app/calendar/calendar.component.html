@@ -20,9 +20,150 @@
       <td></td>
       <td></td>
     </tr>
-    <tr #tr *ngFor="let h of hours" class="{{h}}">
+    <tr class="en">
       <td></td>
-      <td #td *ngFor="let d of week" class="{{d | date: 'EEE'}}"></td>
+      <td>
+        <div class="meal" [ngStyle]="{display: (monMeal === null || monMeal === undefined) ? 'none' : 'flex'}">
+          <p>{{monMeal === null ? '' : monMeal.title}}</p>
+          <p><b>{{monMeal === null ? '' : monMeal.kcal}}</b></p>
+        </div>
+      </td>
+      <td>
+        <div class="meal" [ngStyle]="{display: (tueMeal === null || tueMeal === undefined) ? 'none' : 'flex'}">
+          <p>{{tueMeal === null ? '' : tueMeal.title}}</p>
+          <p><b>{{tueMeal === null ? '' : tueMeal.kcal}}</b></p>
+        </div>
+      </td>
+      <td>
+        <div class="meal" [ngStyle]="{display: (wedMeal === null || wedMeal === undefined) ? 'none' : 'flex'}">
+          <p>{{wedMeal === null ? '' : wedMeal.title}}</p>
+          <p><b>{{wedMeal === null ? '' : wedMeal.kcal}}</b></p>
+        </div>
+      </td>
+      <td>
+        <div class="meal" [ngStyle]="{display: (thuMeal === null || thuMeal === undefined) ? 'none' : 'flex'}">
+          <p>{{thuMeal === null ? '' : thuMeal.title}}</p>
+          <p><b>{{thuMeal === null ? '' : thuMeal.kcal}}</b></p>
+        </div>
+      </td>
+      <td>
+        <div class="meal" [ngStyle]="{display: (friMeal === null || friMeal === undefined) ? 'none' : 'flex'}">
+          <p>{{friMeal === null ? '' : friMeal.title}}</p>
+          <p><b>{{friMeal === null ? '' : friMeal.kcal}}</b></p>
+        </div>
+      </td>
+      <td>
+        <div class="meal" [ngStyle]="{display: (sutMeal === null || sutMeal === undefined) ? 'none' : 'flex'}">
+          <p>{{sutMeal === null ? '' : sutMeal.title}}</p>
+          <p><b>{{sutMeal === null ? '' : sutMeal.kcal}}</b></p>
+        </div>
+      </td>
+      <td>
+        <div class="meal" [ngStyle]="{display: (sunMeal === null || sunMeal === undefined) ? 'none' : 'flex'}">
+          <p>{{sunMeal === null ? '' : sunMeal.title}}</p>
+          <p><b>{{sunMeal === null ? '' : sunMeal.kcal}}</b></p>
+        </div>
+      </td>
+    </tr>
+    <tr class="nt">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="te">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="et">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="tt">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="tf">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="ff">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="fs">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="ss">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="se">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="en">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td></td>
@@ -55,8 +196,6 @@
 </div>
 <img class="girl" src="../../assets/dimGirl.png" alt="girl">
 
-<div class="meal">
-  <p>{{mealData.title}}</p>
-  <p><b>{{mealData.kcal}}</b></p>
-</div>
+
+
 

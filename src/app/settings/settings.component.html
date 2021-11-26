@@ -43,17 +43,22 @@
       <p>Carbohydrates (gm)</p>
       <input type="text" name="Carbohydrates" formControlName="carb">
     </div>
-    <button  class="button save" type="submit" [disabled]="form.invalid">Save settings</button>
+    <button  (click)="toggle = true" class="button save" type="submit" [disabled]="form.invalid">Save settings</button>
   </form>
 </div>
 <img class="girl" src="../../assets/dimGirl.png">
 
-<div class="by"></div>
-<div class="blur">
-  <div class="modal">
-    <p>Settings changed. Go back to the main page?</p>
-    <button>No</button>
-    <button>Yes</button>
+<div class="modalWindow" [ngStyle]="{display: toggle ? 'block' : 'none'}">
+  <div class="shade"></div>
+  <div class="modalPosition">
+    <div class="modal">
+      <p>Settings changed. Go back to the main page?</p>
+      <div class="buttonsModal">
+        <button (click)="toggle = false">No</button>
+        <button [routerLink]="['/calendar']">Yes</button>
+      </div>
+    </div>
   </div>
 </div>
+
 
