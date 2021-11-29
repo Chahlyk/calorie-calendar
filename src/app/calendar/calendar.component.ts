@@ -42,7 +42,7 @@ export class CalendarComponent implements OnInit {
 
   private dateArray(): void {
     if (this.delta != 0) {this.monday.setDate(this.date.getDate() + this.delta)}
-    else {this.monday.setDate(this.date.getDate() + 7 + this.delta)}
+    else {this.monday.setDate(this.date.getDate() + this.delta)}
     for( let i = 0; i < 7; i++) {
       this.daysPerWeek = i;
       this.daysInMs = this.date.setTime(this.monday.getTime() + (this.daysPerWeek * 24 * 60 * 60 * 1000));

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { IMeal, ISettings } from "../interfaces";
 
 @Component({
   selector: 'app-meal',
@@ -25,12 +26,15 @@ export class MealComponent implements OnInit {
     console.log(localStorage)
   }
 
-  public add(): void {
-    const mealData = {...this.form.value}
+  public okay() {
+    const mealData = {...this.form.value},
+          eightNine: IMeal = JSON.parse(<string>localStorage.getItem('eightNine')),
+          nineTen: IMeal = JSON.parse(<string>localStorage.getItem('nineTen'));
     if (this.today.getDay() === 0) {
       localStorage.setItem('sunMeal', JSON.stringify(mealData));
     } else if (this.today.getDay() === 1) {
-      localStorage.setItem('monMeal', JSON.stringify(mealData));
+      const monMeal = {eightNine: eightNine, nineTen: nineTen}
+      localStorage.setItem('monMeal', JSON.stringify(monMeal));
     } else if (this.today.getDay() === 2) {
       localStorage.setItem('tueMeal', JSON.stringify(mealData));
     } else if (this.today.getDay() === 3) {
@@ -42,6 +46,15 @@ export class MealComponent implements OnInit {
     } else if (this.today.getDay() === 6) {
       localStorage.setItem('sutMeal', JSON.stringify(mealData));
     }
+  }
 
+  public add(): void {
+    const mealData = {...this.form.value};
+    const hours = {...this.form.value.time.slice(0, 2)};
+    if (hours === 8 || hours === '08') {
+      localStorage.setItem('eightNine', JSON.stringify(mealData))
+    } else if (hours === 9 || hours === '09') {
+      localStorage.setItem('nineTen', JSON.stringify(mealData));
+    } else return;
   }
 }
