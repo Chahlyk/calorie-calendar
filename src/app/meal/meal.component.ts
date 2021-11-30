@@ -23,38 +23,31 @@ export class MealComponent implements OnInit {
       proteins: new FormControl('', Validators.required),
       carb: new FormControl('', Validators.required),
     })
-    console.log(localStorage)
   }
 
-  public okay() {
-    const mealData = {...this.form.value},
-          eightNine: IMeal = JSON.parse(<string>localStorage.getItem('eightNine')),
-          nineTen: IMeal = JSON.parse(<string>localStorage.getItem('nineTen'));
+  public add() {
+    const mealData = {...this.form.value}
     if (this.today.getDay() === 0) {
-      localStorage.setItem('sunMeal', JSON.stringify(mealData));
+      const sunMeal = JSON.parse(<string>localStorage.getItem('sunMeal'))
+      localStorage.setItem('sunMeal', JSON.stringify([...sunMeal, mealData]));
     } else if (this.today.getDay() === 1) {
-      const monMeal = {eightNine: eightNine, nineTen: nineTen}
-      localStorage.setItem('monMeal', JSON.stringify(monMeal));
+      const monMeal = JSON.parse(<string>localStorage.getItem('monMeal'))
+      localStorage.setItem('monMeal', JSON.stringify([...monMeal, mealData]));
     } else if (this.today.getDay() === 2) {
-      localStorage.setItem('tueMeal', JSON.stringify(mealData));
+      const tueMeal = JSON.parse(<string>localStorage.getItem('tueMeal'))
+      localStorage.setItem('tueMeal', JSON.stringify([...tueMeal, mealData]));
     } else if (this.today.getDay() === 3) {
-      localStorage.setItem('wedMeal', JSON.stringify(mealData));
+      const wedMeal = JSON.parse(<string>localStorage.getItem('wedMeal'))
+      localStorage.setItem('wedMeal', JSON.stringify([...wedMeal, mealData]));
     } else if (this.today.getDay() === 4) {
-      localStorage.setItem('thuMeal', JSON.stringify(mealData));
+      const thuMeal = JSON.parse(<string>localStorage.getItem('thuMeal'))
+      localStorage.setItem('thuMeal', JSON.stringify([...thuMeal, mealData]));
     } else if (this.today.getDay() === 5) {
-      localStorage.setItem('friMeal', JSON.stringify(mealData));
+      const friMeal = JSON.parse(<string>localStorage.getItem('friMeal'))
+      localStorage.setItem('friMeal', JSON.stringify([...friMeal, mealData]));
     } else if (this.today.getDay() === 6) {
-      localStorage.setItem('sutMeal', JSON.stringify(mealData));
+      const sutMeal = JSON.parse(<string>localStorage.getItem('sutMeal'))
+      localStorage.setItem('sutMeal', JSON.stringify([...sutMeal, mealData]));
     }
-  }
-
-  public add(): void {
-    const mealData = {...this.form.value};
-    const hours = {...this.form.value.time.slice(0, 2)};
-    if (hours === 8 || hours === '08') {
-      localStorage.setItem('eightNine', JSON.stringify(mealData))
-    } else if (hours === 9 || hours === '09') {
-      localStorage.setItem('nineTen', JSON.stringify(mealData));
-    } else return;
   }
 }

@@ -26,7 +26,6 @@ export class SettingsComponent implements OnInit {
       proteins: new FormControl((this.settingsData === null || this.settingsData === undefined) ? '' : this.settingsData.proteins, Validators.required),
       carb: new FormControl((this.settingsData === null || this.settingsData === undefined) ? '' : this.settingsData.carb, Validators.required),
     })
-    console.log(localStorage)
   }
 
   public save(): void {

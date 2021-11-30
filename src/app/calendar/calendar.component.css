@@ -7,20 +7,6 @@ p {
   margin: 0;
 }
 
-table {
-  border-collapse: collapse;
-  position: fixed;
-  right: 0;
-  top: 4px;
-}
-
-td {
-  width: 47px;
-  height: 50px;
-  border: 1px solid #D8D5D5;
-  border-right: none;
-}
-
 .horizontalLine {
   display: flex;
   background: white;
@@ -92,6 +78,7 @@ td {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 1px solid black;
 }
 
 .meal p {
@@ -118,4 +105,18 @@ td {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.week {
+  position: absolute;
+  top: 90px;
+  right: 0;
+  display: flex;
+}
+
+.dayOfWeek {
+  border: 1px solid black;
+  border-bottom: none;
+  width: 50px;
+  height: 645px;
 }

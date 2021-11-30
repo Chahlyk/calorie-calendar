@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { IMeal, ISettings } from "../interfaces";
+import { ISettings } from "../interfaces";
 
 @Component({
   selector: 'app-calendar',
@@ -9,17 +9,19 @@ import { IMeal, ISettings } from "../interfaces";
 export class CalendarComponent implements OnInit {
 
   public settingsData: ISettings = JSON.parse(<string>localStorage.getItem('settingsData'));
-  public sunMeal: IMeal = JSON.parse(<string>localStorage.getItem('sunMeal'));
-  public monMeal: IMeal = JSON.parse(<string>localStorage.getItem('monMeal'));
-  public tueMeal: IMeal = JSON.parse(<string>localStorage.getItem('tueMeal'));
-  public wedMeal: IMeal = JSON.parse(<string>localStorage.getItem('wedMeal'));
-  public thuMeal: IMeal = JSON.parse(<string>localStorage.getItem('thuMeal'));
-  public friMeal: IMeal = JSON.parse(<string>localStorage.getItem('friMeal'));
-  public sutMeal: IMeal = JSON.parse(<string>localStorage.getItem('sutMeal'));
+  public sunMeal: Array<object> = JSON.parse(<string>localStorage.getItem('sunMeal'));
+  public monMeal: Array<object> = JSON.parse(<string>localStorage.getItem('monMeal'));
+  public tueMeal: Array<object> = JSON.parse(<string>localStorage.getItem('tueMeal'));
+  public wedMeal: Array<object> = JSON.parse(<string>localStorage.getItem('wedMeal'));
+  public thuMeal: Array<object> = JSON.parse(<string>localStorage.getItem('thuMeal'));
+  public friMeal: Array<object> = JSON.parse(<string>localStorage.getItem('friMeal'));
+  public sutMeal: Array<object> = JSON.parse(<string>localStorage.getItem('sutMeal'));
+
+  public data: Array<object> = [this.monMeal, this.tueMeal, this.wedMeal, this.thuMeal, this.friMeal, this.sutMeal, this.sunMeal];
+  public hours: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
   public sum: any = 1310;
   public week: Array<Date> = [];
-  public hours: Array<string> = ['eN', 'nT', 'tE', 'eT', 'tT', 'tF', 'fF', 'fS', 'sS', 'sE', 'eN'];
   public time: Array<string> = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00',]
   public color: string = '';
   public today: Date = new Date();
@@ -37,7 +39,6 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.dateArray();
     this.changeColor();
-    console.log(localStorage);
   }
 
   private dateArray(): void {
