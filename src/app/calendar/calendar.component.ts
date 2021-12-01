@@ -9,22 +9,21 @@ import { ISettings } from "../interfaces";
 export class CalendarComponent implements OnInit {
 
   public settingsData: ISettings = JSON.parse(<string>localStorage.getItem('settingsData'));
-  public sunMeal: Array<object> = JSON.parse(<string>localStorage.getItem('sunMeal'));
-  public monMeal: Array<object> = JSON.parse(<string>localStorage.getItem('monMeal'));
-  public tueMeal: Array<object> = JSON.parse(<string>localStorage.getItem('tueMeal'));
-  public wedMeal: Array<object> = JSON.parse(<string>localStorage.getItem('wedMeal'));
-  public thuMeal: Array<object> = JSON.parse(<string>localStorage.getItem('thuMeal'));
-  public friMeal: Array<object> = JSON.parse(<string>localStorage.getItem('friMeal'));
-  public sutMeal: Array<object> = JSON.parse(<string>localStorage.getItem('sutMeal'));
-
-  public data: Array<object> = [this.monMeal, this.tueMeal, this.wedMeal, this.thuMeal, this.friMeal, this.sutMeal, this.sunMeal];
-  public hours: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
+  public data!: Array<any>;
+  public hours: Array<any> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   public sum: any = 1310;
   public week: Array<Date> = [];
   public time: Array<string> = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00',]
   public color: string = '';
   public today: Date = new Date();
+
+  private sunMeal: Array<object> = JSON.parse(<string>localStorage.getItem('sunMeal'));
+  private monMeal: Array<object> = JSON.parse(<string>localStorage.getItem('monMeal'));
+  private tueMeal: Array<object> = JSON.parse(<string>localStorage.getItem('tueMeal'));
+  private wedMeal: Array<object> = JSON.parse(<string>localStorage.getItem('wedMeal'));
+  private thuMeal: Array<object> = JSON.parse(<string>localStorage.getItem('thuMeal'));
+  private friMeal: Array<object> = JSON.parse(<string>localStorage.getItem('friMeal'));
+  private sutMeal: Array<object> = JSON.parse(<string>localStorage.getItem('sutMeal'));
   private monday: Date = new Date();
   private date: Date = new Date();
   private days!: Date;
@@ -33,12 +32,10 @@ export class CalendarComponent implements OnInit {
   private idxOfMon: number = 1;
   private delta: number = this.idxOfMon - this.date.getDay();
 
-
-  constructor() { }
-
   ngOnInit(): void {
     this.dateArray();
     this.changeColor();
+    this.data = [this.monMeal, this.tueMeal, this.wedMeal, this.thuMeal, this.friMeal, this.sutMeal, this.sunMeal];
   }
 
   private dateArray(): void {
@@ -52,7 +49,7 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  private changeColor() {
+  private changeColor(): void {
     if (this.settingsData != undefined) {
       if (this.sum > this.settingsData.maxKcal) {
         this.color = '#F47981';
@@ -64,7 +61,6 @@ export class CalendarComponent implements OnInit {
     } else {
       this.sum = '';
     }
-
   }
 
 }
