@@ -2,9 +2,9 @@
   <div class="dayOfWeek">
     <div class="meal" *ngFor="let h of hours"></div>
   </div>
-  <div class="dayOfWeek" *ngFor="let d of data">
+  <div class="dayOfWeek" *ngFor="let d of data" >
     <div class="meal" *ngFor="let h of hours">
-      <div [routerLink]="['/thatMeal']" [ngStyle]="{background: d != undefined && d[h] != undefined ? '#799CF4' : 'none'}">
+      <div [routerLink]="['/thatMeal']" [ngStyle]="{display: d != undefined && d[h] != undefined ? 'flex' : 'none'}" #thatMeal>
         <p>{{d != null && d[h] != undefined ? d[h].title : ''}}</p>
         <p><b>{{d != null && d[h] != undefined ? d[h].time : ''}}</b></p>
       </div>
@@ -26,7 +26,7 @@
 <div class="verticalLine">
   <p class="start" *ngFor="let t of time">{{t}}</p>
 </div>
-<div class="add" >
+<div class="add" [routerLink]="['/meal']">
   <img src="../../assets/add_24px.png" alt="add">
 </div>
 <img class="girl" src="../../assets/dimGirl.png" alt="girl">

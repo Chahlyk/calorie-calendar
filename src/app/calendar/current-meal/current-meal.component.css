@@ -1,0 +1,50 @@
+* {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 16px;
+}
+
+p {
+  margin: 0;
+}
+
+.cancel {
+  position: absolute;
+  font-size: 18px;
+  top: 6px;
+  left: 9px;
+  margin: 0;
+  text-decoration: none;
+  color: black;
+}
+
+.title {
+  font-size: 28px;
+  text-align: center;
+  margin: 23px 0 0 0;
+}
+
+.mealInfo {
+  margin: 10px 30px;
+}
+
+.info {
+  font-size: 18px;
+  margin: 17px 0 33px 0;
+}
+
+.addPhoto {
+  background: #EBEAEA;
+  width: 298px;
+  height: 130px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 62px;
+}
+
+.girl {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

@@ -1,0 +1,30 @@
+<div>
+  <a [routerLink]="['/calendar']" class="cancel">Back</a>
+  <p class="title">August 7</p>
+</div>
+<div class="mealInfo">
+  <div class="kcal">
+    <p>Kcal</p>
+    <p class="info">{{kcal}}/{{settingsData.maxKcal}}</p>
+  </div>
+  <div class="fats">
+    <p>Fats (gm)</p>
+    <p class="info">{{fats}}/{{settingsData.fats}}</p>
+  </div>
+  <div class="proteins">
+    <p>Proteins (gm)</p>
+    <p class="info">{{proteins}}/{{settingsData.proteins}}</p>
+  </div>
+  <div class="carb">
+    <p>Carbohydrates (gm)</p>
+    <p class="info">{{carb}}/{{settingsData.carb}}</p>
+  </div>
+  <div class="meal">
+    <p>Завтрак хлопья</p>
+    <div class="kcalTime">
+      <p>450</p>
+      <p class="time">12:40</p>
+    </div>
+  </div>
+</div>
+<img class="girl" src="../../../assets/dimGirl.png" alt="dimGirl">

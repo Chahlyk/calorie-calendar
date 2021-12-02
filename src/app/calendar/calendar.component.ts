@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ISettings } from "../interfaces";
 
 @Component({
@@ -9,7 +9,6 @@ import { ISettings } from "../interfaces";
 export class CalendarComponent implements OnInit {
 
   public settingsData: ISettings = JSON.parse(<string>localStorage.getItem('settingsData'));
-  public data!: Array<any>;
   public hours: Array<any> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   public sum: any = 1310;
   public week: Array<Date> = [];
@@ -24,6 +23,7 @@ export class CalendarComponent implements OnInit {
   private thuMeal: Array<object> = JSON.parse(<string>localStorage.getItem('thuMeal'));
   private friMeal: Array<object> = JSON.parse(<string>localStorage.getItem('friMeal'));
   private sutMeal: Array<object> = JSON.parse(<string>localStorage.getItem('sutMeal'));
+  public data: Array<any> = [this.monMeal, this.tueMeal, this.wedMeal, this.thuMeal, this.friMeal, this.sutMeal, this.sunMeal];
   private monday: Date = new Date();
   private date: Date = new Date();
   private days!: Date;
@@ -35,7 +35,6 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.dateArray();
     this.changeColor();
-    this.data = [this.monMeal, this.tueMeal, this.wedMeal, this.thuMeal, this.friMeal, this.sutMeal, this.sunMeal];
   }
 
   private dateArray(): void {
