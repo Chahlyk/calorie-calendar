@@ -8,8 +8,9 @@ import { SettingsComponent } from './settings/settings.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MealComponent } from './meal/meal.component';
-import { CurrentDayComponent } from './calendar/current-day/current-day.component';
-import { CurrentMealComponent } from './calendar/current-meal/current-meal.component';
+import { CurrentDayComponent } from './current-day/current-day.component';
+import { CurrentMealComponent } from './current-meal/current-meal.component';
+import { SubjectsService } from "./subjects.service";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { CurrentMealComponent } from './calendar/current-meal/current-meal.compo
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [SubjectsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

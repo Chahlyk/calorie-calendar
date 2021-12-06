@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ISettings } from "../../interfaces";
+import { ISettings } from "../interfaces";
 
 @Component({
   selector: 'app-current-day',

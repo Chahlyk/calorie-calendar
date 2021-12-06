@@ -2,9 +2,9 @@
   <div class="dayOfWeek">
     <div class="meal" *ngFor="let h of hours"></div>
   </div>
-  <div class="dayOfWeek" *ngFor="let d of data" >
+  <div class="dayOfWeek" *ngFor="let d of data">
     <div class="meal" *ngFor="let h of hours">
-      <div [routerLink]="['/thatMeal']" [ngStyle]="{display: d != undefined && d[h] != undefined ? 'flex' : 'none'}" #thatMeal>
+      <div [routerLink]="['/thatMeal']" [ngStyle]="{display: d != undefined && d[h] != undefined ? 'flex' : 'none'}" (click)="sendMeal()">
         <p>{{d != null && d[h] != undefined ? d[h].title : ''}}</p>
         <p><b>{{d != null && d[h] != undefined ? d[h].time : ''}}</b></p>
       </div>

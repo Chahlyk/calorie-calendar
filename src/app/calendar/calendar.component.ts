@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ISettings } from "../interfaces";
+import { SubjectsService } from "../subjects.service";
 
 @Component({
   selector: 'app-calendar',
@@ -10,7 +11,7 @@ export class CalendarComponent implements OnInit {
 
   public settingsData: ISettings = JSON.parse(<string>localStorage.getItem('settingsData'));
   public hours: Array<any> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  public sum: any = 1310;
+  public sum: any = 0;
   public week: Array<Date> = [];
   public time: Array<string> = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00',]
   public color: string = '';
@@ -32,9 +33,28 @@ export class CalendarComponent implements OnInit {
   private idxOfMon: number = 1;
   private delta: number = this.idxOfMon - this.date.getDay();
 
+  constructor(private subjectService: SubjectsService) {
+  }
+
   ngOnInit(): void {
     this.dateArray();
+    this.sumCounter();
     this.changeColor();
+  }
+
+  public sumCounter(): void {
+    for(let d of this.data) {
+      if(d != undefined) {
+        for(let r of d) {
+          this.sum += +r.kcal;
+        }
+      }
+    }
+  }
+
+  public sendMeal(){
+    let data = this;
+    data.subjectService.sendMeal({title: this.title, kcal: this.kcal, time: this.time, carb: this.carb, fats: this.fats, proteins: this.proteins})
   }
 
   private dateArray(): void {
@@ -61,5 +81,4 @@ export class CalendarComponent implements OnInit {
       this.sum = '';
     }
   }
-
 }
