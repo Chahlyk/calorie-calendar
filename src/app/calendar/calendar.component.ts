@@ -38,29 +38,28 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.dateArray();
-    this.sumCounter();
     this.changeColor();
   }
 
-  public sumCounter(): void {
-    for(let d of this.data) {
-      if(d != undefined) {
-        for(let r of d) {
-          this.sum += +r.kcal;
-        }
-      }
-    }
+  public sendMeal(obj: object): void {
+    let data = this;
+    data.subjectService.send(obj);
   }
 
-  public sendMeal(){
+  public sendDay(obj: object): void {
     let data = this;
-    data.subjectService.sendMeal({title: this.title, kcal: this.kcal, time: this.time, carb: this.carb, fats: this.fats, proteins: this.proteins})
+    data.subjectService.send(obj);
   }
 
   private dateArray(): void {
     if (this.delta != 0) {this.monday.setDate(this.date.getDate() + this.delta)}
     else {this.monday.setDate(this.date.getDate() + this.delta)}
     for( let i = 0; i < 7; i++) {
+      if (this.data[i] != undefined) {
+        for(let r of this.data[i]) {
+          this.sum += +r.kcal;
+        }
+      }
       this.daysPerWeek = i;
       this.daysInMs = this.date.setTime(this.monday.getTime() + (this.daysPerWeek * 24 * 60 * 60 * 1000));
       this.days = new Date(this.daysInMs);

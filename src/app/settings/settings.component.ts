@@ -32,4 +32,15 @@ export class SettingsComponent implements OnInit {
     const settingsData = {...this.form.value}
     localStorage.setItem('settingsData', JSON.stringify(settingsData));
   }
+
+  public exit(): void {
+    localStorage.removeItem('settingsData');
+    localStorage.removeItem('sunMeal');
+    localStorage.removeItem('monMeal');
+    localStorage.removeItem('tueMeal');
+    localStorage.removeItem('wedMeal');
+    localStorage.removeItem('thuMeal');
+    localStorage.removeItem('friMeal');
+    localStorage.removeItem('sutMeal');
+  }
 }

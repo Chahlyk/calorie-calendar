@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IMeal } from "../interfaces";
+import { SubjectsService } from "../subjects.service";
 
 @Component({
   selector: 'app-current-meal',
@@ -7,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrentMealComponent implements OnInit {
 
-  constructor() {
+  public currentMeal!: IMeal;
+
+  constructor(private subjectService: SubjectsService) {
   }
 
   ngOnInit(): void {
+    this.getMeal();
+  }
+
+  private getMeal(): void {
+    this.subjectService.get().subscribe((meal) => {
+      this.currentMeal = meal.data;
+    })
   }
 
 }

@@ -4,7 +4,7 @@
   </div>
   <div class="dayOfWeek" *ngFor="let d of data">
     <div class="meal" *ngFor="let h of hours">
-      <div [routerLink]="['/thatMeal']" [ngStyle]="{display: d != undefined && d[h] != undefined ? 'flex' : 'none'}" (click)="sendMeal()">
+      <div [routerLink]="['/thatMeal']" [ngStyle]="{display: d != undefined && d[h] != undefined ? 'flex' : 'none'}" (click)="sendMeal(d[h])">
         <p>{{d != null && d[h] != undefined ? d[h].title : ''}}</p>
         <p><b>{{d != null && d[h] != undefined ? d[h].time : ''}}</b></p>
       </div>
@@ -17,7 +17,7 @@
     <img [routerLink]="['/settings']" src="../../assets/settings.jpg" alt="cogwheel">
     <p class="month">{{today | date: 'MMM'}}˅</p>
   </div>
-  <div class="days" *ngFor="let d of week" [routerLink]="['/day']">
+  <div [routerLink]="['/day']" class="days" *ngFor="let d of week" (click)="sendDay(data[d.getDay()])">
     <div class="sum"><p [ngStyle]="{color: color}">{{sum}}</p></div>
     <p class="day" [ngStyle]="{color: d.getDate() === today.getDate() ? 'white' : 'black', background: d.getDate() === today.getDate() ? '#799CF4': 'none'}">{{d.getDate()}}</p>
     <p>{{d | date: 'EEE'}}</p>

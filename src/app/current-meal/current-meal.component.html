@@ -1,27 +1,27 @@
 <div>
   <a [routerLink]="['/calendar']" class="cancel">Back</a>
-  <p class="title">New meal</p>
+  <p class="title">{{currentMeal.title}}</p>
 </div>
 <div class="mealInfo">
   <div class="time">
     <p>Time</p>
-    <p class="info">12:40</p>
+    <p class="info">{{currentMeal.time}}</p>
   </div>
   <div class="kcal">
     <p>Kcal</p>
-    <p class="info">450</p>
+    <p class="info">{{currentMeal.kcal}}</p>
   </div>
   <div class="fats">
     <p>Fats (gm)</p>
-    <p class="info">55</p>
+    <p class="info">{{currentMeal.fats}}</p>
   </div>
   <div class="proteins">
     <p>Proteins (gm)</p>
-    <p class="info">55</p>
+    <p class="info">{{currentMeal.proteins}}</p>
   </div>
   <div class="carb">
     <p>Carbohydrates (gm)</p>
-    <p class="info">55</p>
+    <p class="info">{{currentMeal.carb}}</p>
   </div>
   <div class="addPhoto">
     <img src="../../assets/addPhoto.svg">

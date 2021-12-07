@@ -1,6 +1,6 @@
 <div>
   <a [routerLink]="['/calendar']" class="cancel">Cancel</a>
-  <a [routerLink]="['/']" class="exit"><img src="../../assets/exit.jpg" alt="exit"></a>
+  <a [routerLink]="['/']" (click)="exit()" class="exit"><img src="../../assets/exit.jpg" alt="exit"></a>
   <p class="title">Personal settings</p>
 </div>
 <div class="content">
