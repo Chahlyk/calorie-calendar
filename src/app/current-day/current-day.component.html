@@ -1,23 +1,23 @@
 <div>
   <a [routerLink]="['/calendar']" class="cancel">Back</a>
-  <p class="title">August 7</p>
+  <p class="title">{{date.getDate() === today.getDate() ? 'Today' : date | date: 'MMMM d'}}</p>
 </div>
 <div class="mealInfo">
   <div class="kcal">
     <p>Kcal</p>
-    <p class="info">{{kcal}}/{{settingsData.maxKcal}}</p>
+    <p class="info" [ngStyle]="{color: colorKcal}">{{kcal}}/{{settingsData.maxKcal}}</p>
   </div>
   <div class="fats">
     <p>Fats (gm)</p>
-    <p class="info">{{fats}}/{{settingsData.fats}}</p>
+    <p class="info" [ngStyle]="{color: colorFats}">{{fats}}/{{settingsData.fats}}</p>
   </div>
   <div class="proteins">
     <p>Proteins (gm)</p>
-    <p class="info">{{proteins}}/{{settingsData.proteins}}</p>
+    <p class="info" [ngStyle]="{color: colorProteins}">{{proteins}}/{{settingsData.proteins}}</p>
   </div>
   <div class="carb">
     <p>Carbohydrates (gm)</p>
-    <p class="info">{{carb}}/{{settingsData.carb}}</p>
+    <p class="info" [ngStyle]="{color: colorCarb}">{{carb}}/{{settingsData.carb}}</p>
   </div>
   <div class="meal" *ngFor="let r of currentDay">
     <p>{{r.title}}</p>

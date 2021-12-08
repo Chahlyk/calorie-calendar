@@ -19,7 +19,7 @@ export class CurrentMealComponent implements OnInit {
   }
 
   private getMeal(): void {
-    this.subjectService.get().subscribe((meal) => {
+    this.subjectService.getMeal().subscribe((meal) => {
       this.currentMeal = meal.data;
     })
   }

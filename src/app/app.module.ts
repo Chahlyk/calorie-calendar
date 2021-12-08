@@ -11,6 +11,7 @@ import { MealComponent } from './meal/meal.component';
 import { CurrentDayComponent } from './current-day/current-day.component';
 import { CurrentMealComponent } from './current-meal/current-meal.component';
 import { SubjectsService } from "./subjects.service";
+import { CalendarPipe } from './calendar/calendar.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SubjectsService } from "./subjects.service";
     SettingsComponent,
     MealComponent,
     CurrentDayComponent,
-    CurrentMealComponent
+    CurrentMealComponent,
+    CalendarPipe
   ],
   imports: [
     BrowserModule,
