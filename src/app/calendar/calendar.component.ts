@@ -11,7 +11,8 @@ export class CalendarComponent implements OnInit {
 
   public settingsData: ISettings = JSON.parse(<string>localStorage.getItem('settingsData'));
   public hours: Array<any> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  public sum: any = '';
+  public sum: any = 0;
+  public fulls: Array<any> = [];
   public week: Array<Date> = [];
   public time: Array<string> = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00',]
   public color: string = '';
@@ -42,8 +43,6 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.dateArray();
     this.getSum();
-    this.changeColor();
-    this.arrayDestroy();
   }
 
   public sendMeal(obj: object): void {
@@ -76,31 +75,18 @@ export class CalendarComponent implements OnInit {
       this.days = new Date(this.daysInMs);
       this.week.push(this.days);
     }
+    this.fulls.push(this.sum);
   }
 
-  private changeColor(): void {
+  public changeColor(item: any): any {
     if (this.settingsData != undefined) {
-      if (this.sum > this.settingsData.maxKcal) {
+      if (item > this.settingsData.maxKcal) {
         this.color = '#F47981';
-      } else if (this.sum < this.settingsData.minKcal) {
+      } else if (item < this.settingsData.minKcal) {
         this.color = '#F5D45E';
       } else {
         this.color = '#799CF4';
       }
-    } else {
-      this.sum = '';
-    }
-  }
-
-  private arrayDestroy(): void {
-    if (this.today.getDay() === 0 && this.today.setHours(22)) {
-      localStorage.removeItem('sumMeal');
-      localStorage.removeItem('monMeal');
-      localStorage.removeItem('tueMeal');
-      localStorage.removeItem('wedMeal');
-      localStorage.removeItem('thuMeal');
-      localStorage.removeItem('friMeal');
-      localStorage.removeItem('sutMeal');
     }
   }
 }
