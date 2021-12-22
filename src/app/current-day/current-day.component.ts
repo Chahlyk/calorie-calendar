@@ -43,6 +43,7 @@ export class CurrentDayComponent implements OnInit {
         }
       }
     })
+    localStorage.setItem('kcal', this.kcal);
   }
 
   private sendSum(): void {

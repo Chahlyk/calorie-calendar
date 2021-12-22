@@ -10,7 +10,7 @@ import { SubjectsService } from "../subjects.service";
 export class CalendarComponent implements OnInit {
 
   public settingsData: ISettings = JSON.parse(<string>localStorage.getItem('settingsData'));
-  public hours: Array<any> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  public hours!: Array<any>;
   public sum: any = 0;
   public fulls: Array<any> = [];
   public week: Array<Date> = [];
@@ -43,6 +43,7 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.dateArray();
     this.getSum();
+    this.hours  = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   }
 
   public sendMeal(obj: object): void {
@@ -56,20 +57,13 @@ export class CalendarComponent implements OnInit {
   }
 
   private getSum(): void {
-    this.subjectService.getSum().subscribe((sum) => {
-      this.sum = sum;
-    })
+    this.sum = JSON.parse(<string>localStorage.getItem('kcal'));
   }
 
   private dateArray(): void {
     if (this.delta != 0) {this.monday.setDate(this.date.getDate() + this.delta)}
     else {this.monday.setDate(this.date.getDate() + this.delta)}
     for( let i = 0; i < 7; i++) {
-      if (this.data[i] != undefined) {
-        for(let r of this.data[i]) {
-          this.sum += +r.kcal;
-        }
-      }
       this.daysPerWeek = i;
       this.daysInMs = this.date.setTime(this.monday.getTime() + (this.daysPerWeek * 24 * 60 * 60 * 1000));
       this.days = new Date(this.daysInMs);

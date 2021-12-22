@@ -6,12 +6,15 @@ import { IMeal } from "../interfaces";
 })
 export class CalendarPipe implements PipeTransform {
 
+  public meal!: boolean;
+
   transform(days: Array<IMeal>, hours: string): any {
-    return days.forEach(item => {
-      if (days != undefined) {
-        item.time.slice(0, 2) === hours.slice(0, 2);
+    days.forEach(item => {
+      if (item.time.slice(0, 2) === hours.slice(0, 2)) {
+        this.meal = true;
       }
     })
+    return this.meal;
   }
 
 }

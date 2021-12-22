@@ -2,9 +2,9 @@
   <div class="dayOfWeek">
     <div class="meal" *ngFor="let h of hours"></div>
   </div>
-  <div class="dayOfWeek" *ngFor="let meals of data; let i=index">
-    <div class="meal" *ngFor="let h of time">
-      <div  [routerLink]="['/thatMeal']" *ngIf="meals | calendar : hours[+h]" (click)="sendMeal(meals[h])">
+  <div class="dayOfWeek" *ngFor="let meals of data">
+    <div class="meal" *ngFor="let h of time; let i=index">
+      <div  [routerLink]="['/thatMeal']" *ngIf="meals | calendar : h" (click)="sendMeal(meals[i])">
         <p>{{meals[i]?.title || ''}}</p>
         <p><b>{{meals[i]?.time || ''}}</b></p>
       </div>
@@ -18,7 +18,7 @@
     <p class="month">{{today | date: 'MMM'}}˅</p>
   </div>
   <div [routerLink]="['/day']" class="days" *ngFor="let d of week; let i=index" (click)="sendDay(data[d.getDay() - idx], d)">
-    <div class="sum"><p [ngStyle]="{color: changeColor(fulls[i])}" >{{fulls[i] || ''}}</p></div>
+    <div class="sum"><p [ngStyle]="{color: changeColor(sum)}" >{{sum}}</p></div>
     <p class="day" [ngStyle]="{color: d.getDate() === today.getDate() ? 'white' : 'black', background: d.getDate() === today.getDate() ? '#799CF4': 'none'}">{{d.getDate()}}</p>
     <p>{{d | date: 'EEE'}}</p>
   </div>

@@ -118,6 +118,7 @@ p {
   width: 47px;
   height: 50px;
   background: #799CF4;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 1px;
