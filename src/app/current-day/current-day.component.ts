@@ -27,7 +27,6 @@ export class CurrentDayComponent implements OnInit {
   ngOnInit(): void {
     this.getDay();
     this.changeColor();
-    this.sendSum();
   }
 
   private getDay(): void {
@@ -44,10 +43,6 @@ export class CurrentDayComponent implements OnInit {
       }
     })
     localStorage.setItem('kcal', this.kcal);
-  }
-
-  private sendSum(): void {
-    this.subjectService.sendSum(this.kcal);
   }
 
   private changeColor(): void {
