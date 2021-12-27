@@ -42,7 +42,6 @@ export class CurrentDayComponent implements OnInit {
         }
       }
     })
-    localStorage.setItem('kcal', this.kcal);
   }
 
   private changeColor(): void {

@@ -6,15 +6,15 @@ import { IMeal } from "../interfaces";
 })
 export class SecondCalendarPipe implements PipeTransform {
 
-  public idx!: number;
+  public meal!: object;
 
   transform(days: Array<IMeal>, hours: string): any {
     days.forEach(item => {
       if (item.time.slice(0, 2) === hours.slice(0, 2)) {
-        this.idx = days.indexOf(item);
+        this.meal = item
       }
     })
-    return this.idx;
+    return this.meal;
   }
 
 }

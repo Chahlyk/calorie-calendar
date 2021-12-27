@@ -1,12 +1,12 @@
-<div class="week">
+ <div class="week">
   <div class="dayOfWeek">
     <div class="meal" *ngFor="let h of hours"></div>
   </div>
   <div class="dayOfWeek" *ngFor="let meals of data">
-    <div class="meal" *ngFor="let h of time; let i=index">
-      <div  [routerLink]="['/thatMeal']" *ngIf="meals | calendar : h" (click)="sendMeal(meals[i])">
-        <p>{{meals[(meals | secondCalendar : h)]?.title || ''}}</p>
-        <p><b>{{meals[(meals | secondCalendar : h)]?.time || ''}}</b></p>
+    <div class="meal" *ngFor="let h of time;let i=index">
+      <div [routerLink]="['/thatMeal']" *ngIf="meals | calendar : h" (click)="sendMeal(meals, h)">
+        <p>{{(meals | secondCalendar : h)?.title || ''}}</p>
+        <p><b>{{(meals | secondCalendar : h)?.time || ''}}</b></p>
       </div>
     </div>
     <div class="meal"></div>

@@ -35,6 +35,7 @@ export class CalendarComponent implements OnInit {
   private friMeal: Array<IMeal> = JSON.parse(<string>localStorage.getItem('friMeal')) || [];
   private sutMeal: Array<IMeal> = JSON.parse(<string>localStorage.getItem('sutMeal')) || [];
 
+
   public data: Array<any> = [this.monMeal, this.tueMeal, this.wedMeal, this.thuMeal, this.friMeal, this.sutMeal, this.sunMeal];
   private monday: Date = new Date();
   private date: Date = new Date();
@@ -50,11 +51,16 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.dateArray();
     this.getSum();
+    localStorage.removeItem('kcal')
   }
 
-  public sendMeal(obj: object): void {
+  public sendMeal(obj: Array<IMeal>, hour: string): void {
     let data = this;
-    data.subjectService.sendMeal(obj);
+    obj.forEach(item => {
+      if (item.time.slice(0, 2) === hour.slice(0, 2)) {
+        data.subjectService.sendMeal(item);
+      }
+    })
   }
 
   public sendDay(obj: object, d: Date): void {
