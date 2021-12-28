@@ -9,23 +9,22 @@ import { SubjectsService } from "../subjects.service";
 })
 export class CalendarComponent implements OnInit {
 
-  public one: number = 0;
-  public two: number = 0;
-  public three: number = 0;
-  public four: number = 0;
-  public five: number = 0;
-  public six: number = 0;
-  public seven: number = 0;
-
+  public data!: Array<any>;
+  public monKcal: number = 0;
+  public tueKcal: number = 0;
+  public wedKcal: number = 0;
+  public thuKcal: number = 0;
+  public friKcal: number = 0;
+  public sutKcal: number = 0;
+  public sunKcal: number = 0;
+  public sumKcal: Array<any> = [];
   public settingsData: ISettings = JSON.parse(<string>localStorage.getItem('settingsData'));
-  public hours: Array<any> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  public sum: Array<any> = [];
+  public rows: Array<any> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   public week: Array<Date> = [];
-  public time: Array<string> = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00',]
+  public hours: Array<string> = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00',]
   public color: string = '';
   public today: Date = new Date();
   public idx: number = 1;
-
 
   private sunMeal: Array<IMeal> = JSON.parse(<string>localStorage.getItem('sunMeal')) || [];
   private monMeal: Array<IMeal> = JSON.parse(<string>localStorage.getItem('monMeal')) || [];
@@ -34,9 +33,6 @@ export class CalendarComponent implements OnInit {
   private thuMeal: Array<IMeal> = JSON.parse(<string>localStorage.getItem('thuMeal')) || [];
   private friMeal: Array<IMeal> = JSON.parse(<string>localStorage.getItem('friMeal')) || [];
   private sutMeal: Array<IMeal> = JSON.parse(<string>localStorage.getItem('sutMeal')) || [];
-
-
-  public data: Array<any> = [this.monMeal, this.tueMeal, this.wedMeal, this.thuMeal, this.friMeal, this.sutMeal, this.sunMeal];
   private monday: Date = new Date();
   private date: Date = new Date();
   private days!: Date;
@@ -45,13 +41,13 @@ export class CalendarComponent implements OnInit {
   private idxOfMon: number = 1;
   private delta: number = this.idxOfMon - this.date.getDay();
 
-  constructor(private subjectService: SubjectsService) {
-  }
+  constructor(private subjectService: SubjectsService) {}
 
   ngOnInit(): void {
+    this.data = [this.monMeal, this.tueMeal, this.wedMeal, this.thuMeal, this.friMeal, this.sutMeal, this.sunMeal];
     this.dateArray();
     this.getSum();
-    localStorage.removeItem('kcal')
+    this.storageClear();
   }
 
   public sendMeal(obj: Array<IMeal>, hour: string): void {
@@ -68,60 +64,63 @@ export class CalendarComponent implements OnInit {
     data.subjectService.sendDay({obj, d});
   }
 
-  public getSum() {
-    if (this.monMeal != undefined) {
-      for (let meal of this.monMeal) {
-        this.one += +meal.kcal;
-      }
-    }
-    if (this.tueMeal != undefined) {
-      for (let meal of this.tueMeal) {
-        this.two += +meal.kcal;
-      }
-    }
-    if (this.wedMeal != undefined) {
-      for (let meal of this.wedMeal) {
-        this.three += +meal.kcal;
-      }
-    }
-    if (this.thuMeal != undefined) {
-      for (let meal of this.thuMeal) {
-        this.four += +meal.kcal;
-      }
-    }
-    if (this.friMeal != undefined) {
-      for (let meal of this.friMeal) {
-        this.five += +meal.kcal;
-      }
-    }
-    if (this.sutMeal != undefined) {
-      for (let meal of this.sutMeal) {
-        this.six += +meal.kcal;
-      }
-    }
-    if (this.sunMeal != undefined) {
-      for (let meal of this.sunMeal) {
-        this.seven += +meal.kcal;
-      }
-    }
-    this.sum.push(this.one, this.two, this.three, this.four, this.five, this.six, this.seven);
-  }
-
-  public changeColor(item: any): any {
+  public changeColor(item: any): string {
     if (this.settingsData != undefined) {
-      if (item > this.settingsData.maxKcal) {
-        this.color = '#F47981';
-      } else if (item < this.settingsData.minKcal && item != 0) {
-        this.color = '#F5D45E';
-      } else if (item === 0) {
-        this.color = '#ffffff';
-      } else {
-        this.color = '#799CF4';
+      switch (true) {
+        case (item > this.settingsData.maxKcal):
+          this.color = '#F47981';
+          break;
+        case (item < this.settingsData.minKcal && item != 0):
+          this.color = '#F5D45E';
+          break;
+        case (item === 0):
+          this.color = '#ffffff';
+          break;
+        default:
+          this.color = '#799CF4';
       }
     }
     return this.color;
   }
 
+  private getSum(): void {
+    if (this.monMeal != undefined) {
+      for (let meal of this.monMeal) {
+        this.monKcal += +meal.kcal;
+      }
+    }
+    if (this.tueMeal != undefined) {
+      for (let meal of this.tueMeal) {
+        this.tueKcal += +meal.kcal;
+      }
+    }
+    if (this.wedMeal != undefined) {
+      for (let meal of this.wedMeal) {
+        this.wedKcal += +meal.kcal;
+      }
+    }
+    if (this.thuMeal != undefined) {
+      for (let meal of this.thuMeal) {
+        this.thuKcal += +meal.kcal;
+      }
+    }
+    if (this.friMeal != undefined) {
+      for (let meal of this.friMeal) {
+        this.friKcal += +meal.kcal;
+      }
+    }
+    if (this.sutMeal != undefined) {
+      for (let meal of this.sutMeal) {
+        this.sutKcal += +meal.kcal;
+      }
+    }
+    if (this.sunMeal != undefined) {
+      for (let meal of this.sunMeal) {
+        this.sunKcal += +meal.kcal;
+      }
+    }
+    this.sumKcal.push(this.monKcal, this.tueKcal, this.wedKcal, this.thuKcal, this.friKcal, this.sutKcal, this.sunKcal);
+  }
 
   private dateArray(): void {
     if (this.delta != 0) {this.monday.setDate(this.date.getDate() + this.delta)}
@@ -131,6 +130,19 @@ export class CalendarComponent implements OnInit {
       this.daysInMs = this.date.setTime(this.monday.getTime() + (this.daysPerWeek * 24 * 60 * 60 * 1000));
       this.days = new Date(this.daysInMs);
       this.week.push(this.days);
+    }
+  }
+
+  private storageClear(): void {
+    if (this.tueMeal != null && this.today.getDay() === 1) {
+      localStorage.removeItem('settingsData');
+      localStorage.removeItem('sunMeal');
+      localStorage.removeItem('monMeal');
+      localStorage.removeItem('tueMeal');
+      localStorage.removeItem('wedMeal');
+      localStorage.removeItem('thuMeal');
+      localStorage.removeItem('friMeal');
+      localStorage.removeItem('sutMeal');
     }
   }
 }

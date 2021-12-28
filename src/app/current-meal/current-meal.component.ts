@@ -11,8 +11,7 @@ export class CurrentMealComponent implements OnInit {
 
   public currentMeal!: IMeal;
 
-  constructor(private subjectService: SubjectsService) {
-  }
+  constructor(private subjectService: SubjectsService) {}
 
   ngOnInit(): void {
     this.getMeal();

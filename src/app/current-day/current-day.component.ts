@@ -17,7 +17,6 @@ export class CurrentDayComponent implements OnInit {
   public colorFats: string = '';
   public colorProteins: string = '';
   public colorCarb: string = '';
-
   public currentDay!: any;
   public date!: Date;
   public today: Date = new Date();
@@ -41,7 +40,7 @@ export class CurrentDayComponent implements OnInit {
           this.carb += +meal.carb;
         }
       }
-    })
+    });
   }
 
   private changeColor(): void {

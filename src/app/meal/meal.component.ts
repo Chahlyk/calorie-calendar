@@ -27,27 +27,35 @@ export class MealComponent implements OnInit {
 
   public add() {
     const mealData = {...this.form.value}
-    if (this.today.getDay() === 0) {
-      const sunMeal = JSON.parse(<string>localStorage.getItem('sunMeal')) || [];
-      localStorage.setItem('sunMeal', JSON.stringify([...sunMeal, mealData]));
-    } else if (this.today.getDay() === 1) {
-      const monMeal = JSON.parse(<string>localStorage.getItem('monMeal')) || [];
-      localStorage.setItem('monMeal', JSON.stringify([...monMeal, mealData]));
-    } else if (this.today.getDay() === 2) {
-      const tueMeal = JSON.parse(<string>localStorage.getItem('tueMeal')) || [];
-      localStorage.setItem('tueMeal', JSON.stringify([...tueMeal, mealData]));
-    } else if (this.today.getDay() === 3) {
-      const wedMeal = JSON.parse(<string>localStorage.getItem('wedMeal')) || [];
-      localStorage.setItem('wedMeal', JSON.stringify([...wedMeal, mealData]));
-    } else if (this.today.getDay() === 4) {
-      const thuMeal = JSON.parse(<string>localStorage.getItem('thuMeal')) || [];
-      localStorage.setItem('thuMeal', JSON.stringify([...thuMeal, mealData]));
-    } else if (this.today.getDay() === 5) {
-      const friMeal = JSON.parse(<string>localStorage.getItem('friMeal')) || [];
-      localStorage.setItem('friMeal', JSON.stringify([...friMeal, mealData]));
-    } else if (this.today.getDay() === 6) {
-      const sutMeal = JSON.parse(<string>localStorage.getItem('sutMeal')) || [];
-      localStorage.setItem('sutMeal', JSON.stringify([...sutMeal, mealData]));
+    switch (this.today.getDay()) {
+      case 0:
+        const sunMeal = JSON.parse(<string>localStorage.getItem('sunMeal')) || [];
+        localStorage.setItem('sunMeal', JSON.stringify([...sunMeal, mealData]));
+        break;
+      case 1:
+        const monMeal = JSON.parse(<string>localStorage.getItem('monMeal')) || [];
+        localStorage.setItem('monMeal', JSON.stringify([...monMeal, mealData]));
+        break;
+      case 2:
+        const tueMeal = JSON.parse(<string>localStorage.getItem('tueMeal')) || [];
+        localStorage.setItem('tueMeal', JSON.stringify([...tueMeal, mealData]));
+        break;
+      case 3:
+        const wedMeal = JSON.parse(<string>localStorage.getItem('wedMeal')) || [];
+        localStorage.setItem('wedMeal', JSON.stringify([...wedMeal, mealData]));
+        break;
+      case 4:
+        const thuMeal = JSON.parse(<string>localStorage.getItem('thuMeal')) || [];
+        localStorage.setItem('thuMeal', JSON.stringify([...thuMeal, mealData]));
+        break;
+      case 5:
+        const friMeal = JSON.parse(<string>localStorage.getItem('friMeal')) || [];
+        localStorage.setItem('friMeal', JSON.stringify([...friMeal, mealData]));
+        break;
+      case 6:
+        const sutMeal = JSON.parse(<string>localStorage.getItem('sutMeal')) || [];
+        localStorage.setItem('sutMeal', JSON.stringify([...sutMeal, mealData]));
+        break;
     }
   }
 }
