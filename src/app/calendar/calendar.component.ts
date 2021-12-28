@@ -135,7 +135,6 @@ export class CalendarComponent implements OnInit {
 
   private storageClear(): void {
     if (this.tueMeal != null && this.today.getDay() === 1) {
-      localStorage.removeItem('settingsData');
       localStorage.removeItem('sunMeal');
       localStorage.removeItem('monMeal');
       localStorage.removeItem('tueMeal');
