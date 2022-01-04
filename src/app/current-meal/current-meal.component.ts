@@ -18,7 +18,9 @@ export class CurrentMealComponent implements OnInit {
   }
 
   private getMeal(): void {
-    this.subjectService.getMeal().subscribe((meal) => {
+    this.subjectService.getMeal()
+      // .pipe() unsibscribe
+      .subscribe((meal) => {
       this.currentMeal = meal.data;
     })
   }

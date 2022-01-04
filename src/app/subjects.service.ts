@@ -6,8 +6,8 @@ import { BehaviorSubject, Observable } from "rxjs";
 })
 export class SubjectsService {
 
-  private subjectMeal = new BehaviorSubject<object>({});
-  private subjectDay = new BehaviorSubject<object>({});
+  private subjectMeal: BehaviorSubject<object> = new BehaviorSubject<object>({});
+  private subjectDay: BehaviorSubject<object> = new BehaviorSubject<object>({});
 
   public sendDay(day: object): void {
     this.subjectDay.next({ data: day });

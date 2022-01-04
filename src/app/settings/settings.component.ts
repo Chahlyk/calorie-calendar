@@ -16,16 +16,7 @@ export class SettingsComponent implements OnInit {
   public constructor() { }
 
   public ngOnInit(): void {
-    this.form = new FormGroup({
-      gender: new FormControl((this.settingsData === null || this.settingsData === undefined) ? '' : this.settingsData.gender),
-      weight: new FormControl((this.settingsData === null || this.settingsData === undefined) ? '' : this.settingsData.weight, Validators.required),
-      height: new FormControl((this.settingsData === null || this.settingsData === undefined) ? '' : this.settingsData.height, Validators.required),
-      minKcal: new FormControl((this.settingsData === null || this.settingsData === undefined) ? '' : this.settingsData.minKcal, Validators.required),
-      maxKcal: new FormControl((this.settingsData === null || this.settingsData === undefined) ? '' : this.settingsData.maxKcal, Validators.required),
-      fats: new FormControl((this.settingsData === null || this.settingsData === undefined) ? '' : this.settingsData.fats, Validators.required),
-      proteins: new FormControl((this.settingsData === null || this.settingsData === undefined) ? '' : this.settingsData.proteins, Validators.required),
-      carb: new FormControl((this.settingsData === null || this.settingsData === undefined) ? '' : this.settingsData.carb, Validators.required),
-    })
+    this.buildForm();
   }
 
   public save(): void {
@@ -34,13 +25,20 @@ export class SettingsComponent implements OnInit {
   }
 
   public exit(): void {
-    localStorage.removeItem('settingsData');
-    localStorage.removeItem('sunMeal');
-    localStorage.removeItem('monMeal');
-    localStorage.removeItem('tueMeal');
-    localStorage.removeItem('wedMeal');
-    localStorage.removeItem('thuMeal');
-    localStorage.removeItem('friMeal');
-    localStorage.removeItem('sutMeal');
+    localStorage.clear();
+  }
+
+  private buildForm(): void {
+    this.form = new FormGroup({
+      gender: new FormControl(this.settingsData ? this.settingsData.gender : '', Validators.required),
+      weight: new FormControl(this.settingsData ? this.settingsData.weight : '', Validators.required),
+      height: new FormControl(this.settingsData ? this.settingsData.height : '', Validators.required),
+      minKcal: new FormControl(this.settingsData ? this.settingsData.minKcal : '', Validators.required),
+      maxKcal: new FormControl(this.settingsData ? this.settingsData.maxKcal : '', Validators.required),
+      fats: new FormControl(this.settingsData ? this.settingsData.fats : '', Validators.required),
+      proteins: new FormControl(this.settingsData ? this.settingsData.proteins : '', Validators.required),
+      carb: new FormControl(this.settingsData ? this.settingsData.carb : '', Validators.required),
+    })
   }
 }
+

@@ -19,11 +19,11 @@
     <p>Carbohydrates (gm)</p>
     <p class="info" [ngStyle]="{color: colorCarb}">{{carb}}/{{settingsData.carb}}</p>
   </div>
-  <div class="meal" *ngFor="let r of currentDay">
-    <p>{{r.title}}</p>
+  <div class="meal" *ngFor="let meal of currentDay">
+    <p>{{meal.title}}</p>
     <div class="kcalTime">
-      <p>{{r.kcal}}</p>
-      <p class="time">{{r.time}}</p>
+      <p>{{meal.kcal}}</p>
+      <p class="time">{{meal.time}}</p>
     </div>
   </div>
 </div>

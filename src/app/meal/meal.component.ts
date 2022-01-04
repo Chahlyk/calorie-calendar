@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { IMeal, ISettings } from "../interfaces";
+import { IMeal } from "../interfaces";
 
 @Component({
   selector: 'app-meal',
@@ -11,10 +11,53 @@ export class MealComponent implements OnInit {
   public form!: FormGroup;
   public toggle: boolean = false;
   private today: Date = new Date();
+  private sunMeal!: Array<IMeal>;
+  private monMeal!: Array<IMeal>;
+  private tueMeal!: Array<IMeal>;
+  private wedMeal!: Array<IMeal>;
+  private thuMeal!: Array<IMeal>;
+  private friMeal!: Array<IMeal>;
+  private sutMeal!: Array<IMeal>;
 
   public constructor() { }
 
   public ngOnInit(): void {
+    this.buildForm();
+  }
+
+  public add(): void {
+    switch (this.today.getDay()) {
+      case 0:
+        this.localSaver(this.sunMeal, 'sunMeal');
+        break;
+      case 1:
+        this.localSaver(this.monMeal, 'monMeal');
+        break;
+      case 2:
+        this.localSaver(this.tueMeal, 'tueMeal');
+        break;
+      case 3:
+        this.localSaver(this.wedMeal, 'wedMeal');
+        break;
+      case 4:
+        this.localSaver(this.thuMeal, 'thuMeal');
+        break;
+      case 5:
+        this.localSaver(this.friMeal, 'friMeal');
+        break;
+      case 6:
+        this.localSaver(this.sutMeal, 'sutMeal');
+        break;
+    }
+  }
+
+  private localSaver(someMeal: any, name: string): void {
+    debugger;
+    someMeal = JSON.parse(<string>localStorage.getItem(name)) || [];
+    localStorage.setItem(name, JSON.stringify([...someMeal, {...this.form.value}]));
+  }
+
+  private buildForm(): void {
     this.form = new FormGroup({
       title: new FormControl('', Validators.required),
       kcal: new FormControl('', Validators.required),
@@ -23,39 +66,5 @@ export class MealComponent implements OnInit {
       proteins: new FormControl('', Validators.required),
       carb: new FormControl('', Validators.required),
     })
-  }
-
-  public add() {
-    const mealData = {...this.form.value}
-    switch (this.today.getDay()) {
-      case 0:
-        const sunMeal = JSON.parse(<string>localStorage.getItem('sunMeal')) || [];
-        localStorage.setItem('sunMeal', JSON.stringify([...sunMeal, mealData]));
-        break;
-      case 1:
-        const monMeal = JSON.parse(<string>localStorage.getItem('monMeal')) || [];
-        localStorage.setItem('monMeal', JSON.stringify([...monMeal, mealData]));
-        break;
-      case 2:
-        const tueMeal = JSON.parse(<string>localStorage.getItem('tueMeal')) || [];
-        localStorage.setItem('tueMeal', JSON.stringify([...tueMeal, mealData]));
-        break;
-      case 3:
-        const wedMeal = JSON.parse(<string>localStorage.getItem('wedMeal')) || [];
-        localStorage.setItem('wedMeal', JSON.stringify([...wedMeal, mealData]));
-        break;
-      case 4:
-        const thuMeal = JSON.parse(<string>localStorage.getItem('thuMeal')) || [];
-        localStorage.setItem('thuMeal', JSON.stringify([...thuMeal, mealData]));
-        break;
-      case 5:
-        const friMeal = JSON.parse(<string>localStorage.getItem('friMeal')) || [];
-        localStorage.setItem('friMeal', JSON.stringify([...friMeal, mealData]));
-        break;
-      case 6:
-        const sutMeal = JSON.parse(<string>localStorage.getItem('sutMeal')) || [];
-        localStorage.setItem('sutMeal', JSON.stringify([...sutMeal, mealData]));
-        break;
-    }
   }
 }

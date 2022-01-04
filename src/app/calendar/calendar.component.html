@@ -4,9 +4,9 @@
   </div>
   <div class="dayOfWeek" *ngFor="let meals of data">
     <div class="meal" *ngFor="let hour of hours">
-      <div [routerLink]="['/thatMeal']" *ngIf="meals | calendar : hour" (click)="sendMeal(meals, hour)">
-        <p>{{(meals | secondCalendar : hour)?.title || ''}}</p>
-        <p><b>{{(meals | secondCalendar : hour)?.time || ''}}</b></p>
+      <div [routerLink]="['/thatMeal']" *ngIf="meals | calendar : hour : 'boolean'" (click)="sendMeal(meals, hour)">
+        <p>{{(meals | calendar : hour : 'object')?.title || ''}}</p>
+        <p><b>{{(meals | calendar : hour : 'object')?.time || ''}}</b></p>
       </div>
     </div>
     <div class="meal"></div>
@@ -17,9 +17,9 @@
     <img [routerLink]="['/settings']" src="../../assets/settings.jpg" alt="cogwheel">
     <p class="month">{{today | date: 'MMM'}}˅</p>
   </div>
-  <div [routerLink]="['/day']" class="days" *ngFor="let day of week" (click)="sendDay(data[day.getDay() - idx], day)">
+  <div [routerLink]="['/day']" class="days" *ngFor="let day of week" (click)="sendDay(day)">
     <div class="sum"><p [ngStyle]="{color: changeColor(sumKcal[week.indexOf(day)])}">{{sumKcal[week.indexOf(day)]}}</p></div>
-    <p class="day" [ngStyle]="{color: day.getDate() === today.getDate() ? 'white' : 'black', background: day.getDate() === today.getDate() ? '#799CF4': 'none'}">{{day.getDate()}}</p>
+    <p class="day" [ngStyle]="{color: dayNumber(day, 'color'), background: dayNumber(day, 'background')}">{{day.getDate()}}</p>
     <p>{{day | date: 'EEE'}}</p>
   </div>
 </div>

@@ -24,7 +24,6 @@ export class CalendarComponent implements OnInit {
   public hours: Array<string> = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00',]
   public color: string = '';
   public today: Date = new Date();
-  public idx: number = 1;
 
   private sunMeal: Array<IMeal> = JSON.parse(<string>localStorage.getItem('sunMeal')) || [];
   private monMeal: Array<IMeal> = JSON.parse(<string>localStorage.getItem('monMeal')) || [];
@@ -51,17 +50,16 @@ export class CalendarComponent implements OnInit {
   }
 
   public sendMeal(obj: Array<IMeal>, hour: string): void {
-    let data = this;
     obj.forEach(item => {
       if (item.time.slice(0, 2) === hour.slice(0, 2)) {
-        data.subjectService.sendMeal(item);
+        this.subjectService.sendMeal(item);
       }
     })
   }
 
-  public sendDay(obj: object, d: Date): void {
-    let data = this;
-    data.subjectService.sendDay({obj, d});
+  public sendDay(day: Date): void {
+    const value: object = this.data[day.getDay() - 1];
+    this.subjectService.sendDay({value, day});
   }
 
   public changeColor(item: any): string {
@@ -83,41 +81,43 @@ export class CalendarComponent implements OnInit {
     return this.color;
   }
 
+  public dayNumber(day: Date, css: string): string {
+    if (css === 'color') {
+      return (day.getDate() === this.today.getDate()) ? 'white' : 'black';
+    } else {
+      return (day.getDate() === this.today.getDate()) ? '#799CF4' : 'none';
+    }
+  }
+
+  private check( day: Array<IMeal>): number {
+    let dayKcal: number = 0;
+    for (let meal of day) {
+      dayKcal += +meal.kcal;
+    }
+    return dayKcal;
+  }
+
   private getSum(): void {
     if (this.monMeal != undefined) {
-      for (let meal of this.monMeal) {
-        this.monKcal += +meal.kcal;
-      }
+      this.monKcal = this.check(this.monMeal);
     }
-    if (this.tueMeal != undefined) {
-      for (let meal of this.tueMeal) {
-        this.tueKcal += +meal.kcal;
-      }
+    if (this.tueMeal.length) {
+      this.tueKcal = this.check(this.tueMeal);
     }
-    if (this.wedMeal != undefined) {
-      for (let meal of this.wedMeal) {
-        this.wedKcal += +meal.kcal;
-      }
+    if (this.wedMeal.length) {
+      this.wedKcal = this.check(this.wedMeal);
     }
-    if (this.thuMeal != undefined) {
-      for (let meal of this.thuMeal) {
-        this.thuKcal += +meal.kcal;
-      }
+    if (this.thuMeal.length) {
+      this.thuKcal = this.check(this.thuMeal);
     }
-    if (this.friMeal != undefined) {
-      for (let meal of this.friMeal) {
-        this.friKcal += +meal.kcal;
-      }
+    if (this.friMeal.length) {
+      this.friKcal = this.check(this.friMeal);
     }
-    if (this.sutMeal != undefined) {
-      for (let meal of this.sutMeal) {
-        this.sutKcal += +meal.kcal;
-      }
+    if (this.sutMeal.length) {
+      this.sutKcal = this.check(this.sutMeal);
     }
-    if (this.sunMeal != undefined) {
-      for (let meal of this.sunMeal) {
-        this.sunKcal += +meal.kcal;
-      }
+    if (this.sunMeal.length) {
+      this.sunKcal = this.check(this.sunMeal);
     }
     this.sumKcal.push(this.monKcal, this.tueKcal, this.wedKcal, this.thuKcal, this.friKcal, this.sutKcal, this.sunKcal);
   }
