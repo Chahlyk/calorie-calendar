@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ISettings } from "../interfaces";
 import { SubjectsService } from "../subjects.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-current-day',
   templateUrl: './current-day.component.html',
   styleUrls: ['./current-day.component.css']
 })
-export class CurrentDayComponent implements OnInit {
+export class CurrentDayComponent implements OnInit, OnDestroy {
   public settingsData: ISettings = JSON.parse(<string>localStorage.getItem('settingsData'));
-  public kcal: number = 0;
-  public fats: number = 0;
-  public proteins: number = 0;
-  public carb: number = 0;
+  public kcal: any = 0;
+  public fats: any = 0;
+  public proteins: any = 0;
+  public carb: any = 0;
   public colorKcal: string = '';
   public colorFats: string = '';
   public colorProteins: string = '';
@@ -20,6 +21,8 @@ export class CurrentDayComponent implements OnInit {
   public currentDay!: any;
   public date!: Date;
   public today: Date = new Date();
+
+  private sub: Subscription = new Subscription();
 
   constructor(private subjectService: SubjectsService) { }
 
@@ -29,18 +32,25 @@ export class CurrentDayComponent implements OnInit {
   }
 
   private getDay(): void {
-    this.subjectService.getDay().subscribe((day) => {
-      this.currentDay = day.data.value;
-      this.date = day.data.day;
-      if (this.currentDay != undefined || null) {
-        for ( let meal of this.currentDay ) {
-          this.kcal += +meal.kcal;
-          this.fats += +meal.fats;
-          this.proteins += +meal.proteins;
-          this.carb += +meal.carb;
-        }
-      }
-    });
+    this.sub.add(
+      this.subjectService.getDay()
+        .subscribe((day) => {
+          this.currentDay = day.data.value;
+          this.date = day.data.day;
+          if (this.currentDay != undefined || null) {
+            for ( let meal of this.currentDay ) {
+              this.kcal += +meal.kcal;
+              this.fats += +meal.fats;
+              this.proteins += +meal.proteins;
+              this.carb += +meal.carb;
+            }
+          }
+        })
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   private colorCheck(param: any, setting: any): string {

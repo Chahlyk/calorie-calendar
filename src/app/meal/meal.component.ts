@@ -52,19 +52,18 @@ export class MealComponent implements OnInit {
   }
 
   private localSaver(someMeal: any, name: string): void {
-    debugger;
     someMeal = JSON.parse(<string>localStorage.getItem(name)) || [];
     localStorage.setItem(name, JSON.stringify([...someMeal, {...this.form.value}]));
   }
 
   private buildForm(): void {
     this.form = new FormGroup({
-      title: new FormControl('', Validators.required),
-      kcal: new FormControl('', Validators.required),
-      time: new FormControl('', Validators.required),
-      fats: new FormControl('', Validators.required),
-      proteins: new FormControl('', Validators.required),
-      carb: new FormControl('', Validators.required),
+      title: new FormControl('', [Validators.pattern("\\w{4,11}"), Validators.required]),
+      kcal: new FormControl('',[Validators.pattern("\\d{2,4}"), Validators.required]),
+      time: new FormControl('', [Validators.pattern("\\d{2}[:]\\d{2}"), Validators.required]),
+      fats: new FormControl('', [Validators.pattern("\\d{1, 3}"), Validators.required]),
+      proteins: new FormControl('', [Validators.pattern("\\d{1, 3}"), Validators.required]),
+      carb: new FormControl('', [Validators.pattern("\\d{1, 3}"), Validators.required]),
     })
   }
 }

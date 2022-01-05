@@ -31,13 +31,13 @@ export class SettingsComponent implements OnInit {
   private buildForm(): void {
     this.form = new FormGroup({
       gender: new FormControl(this.settingsData ? this.settingsData.gender : '', Validators.required),
-      weight: new FormControl(this.settingsData ? this.settingsData.weight : '', Validators.required),
-      height: new FormControl(this.settingsData ? this.settingsData.height : '', Validators.required),
-      minKcal: new FormControl(this.settingsData ? this.settingsData.minKcal : '', Validators.required),
-      maxKcal: new FormControl(this.settingsData ? this.settingsData.maxKcal : '', Validators.required),
-      fats: new FormControl(this.settingsData ? this.settingsData.fats : '', Validators.required),
-      proteins: new FormControl(this.settingsData ? this.settingsData.proteins : '', Validators.required),
-      carb: new FormControl(this.settingsData ? this.settingsData.carb : '', Validators.required),
+      weight: new FormControl(this.settingsData ? this.settingsData.weight : '', [Validators.min(35), Validators.max(200), Validators.required]),
+      height: new FormControl(this.settingsData ? this.settingsData.height : '', [Validators.min(140), Validators.max(210), Validators.required]),
+      minKcal: new FormControl(this.settingsData ? this.settingsData.minKcal : '', [Validators.min(500), Validators.max(4500), Validators.required]),
+      maxKcal: new FormControl(this.settingsData ? this.settingsData.maxKcal : '', [Validators.min(550), Validators.max(5000), Validators.required]),
+      fats: new FormControl(this.settingsData ? this.settingsData.fats : '', [Validators.pattern("\\d{1, 4}"), Validators.required]),
+      proteins: new FormControl(this.settingsData ? this.settingsData.proteins : '', [Validators.pattern("\\d{1, 4}"), Validators.required]),
+      carb: new FormControl(this.settingsData ? this.settingsData.carb : '', [Validators.pattern("\\d{1, 4}"), Validators.required]),
     })
   }
 }
